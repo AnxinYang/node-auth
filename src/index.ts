@@ -36,7 +36,6 @@ export function Auth(config: AuthConfig): Auth {
     const { compare, secret, callback, signOptions, verifyOptions, headerKey } = { ...defaultConfig, ...config };
 
     return {
-
         sign: async function (req, res, next) {
             try {
 

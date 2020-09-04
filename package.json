@@ -6,6 +6,10 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "prepublish": "npm run build",
+    "publish": "npm publish",
+    "patch": "npm patch",
+    "minor": "npm minor",
+    "major": "npm major",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
