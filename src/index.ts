@@ -62,7 +62,7 @@ export function Auth(config: AuthConfig): Auth {
 
         verify: async function (req, res, next) {
 
-            const token = req.header(headerKey);
+            const token = req.get(headerKey);
 
             if (!token) {
                 res.status(401).send('Invalid Token.');
