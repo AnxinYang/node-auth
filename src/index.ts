@@ -74,6 +74,7 @@ export function Auth(config: AuthConfig): Auth {
                 res.locals.decoded = decode;
                 next()
             } catch (e) {
+                console.log(e)
                 res.status(500).send();
                 return;
             }
