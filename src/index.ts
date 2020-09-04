@@ -14,8 +14,8 @@ export interface AuthConfig {
 }
 
 export interface Auth {
-    sign: (req: Request, res: Response, next: NextFunction) => any,
-    verify: (req: Request, res: Response, next: NextFunction) => any
+    sign: (req: Request, res: Response, next: NextFunction) => Promise<any>,
+    verify: (req: Request, res: Response, next: NextFunction) => Promise<any>
 }
 
 const defaultCallback: AuthCallback = async (err, jwtToken, jwtPayload, res) => {
@@ -38,7 +38,7 @@ export function Auth(config: AuthConfig): Auth {
         sign: async function (req, res, next) {
             try {
 
-                const payload = compare(req.body);
+                const payload = await compare(req.body);
                 if (!payload) throw Error('Invalid credential.');
 
                 const token = sign(
