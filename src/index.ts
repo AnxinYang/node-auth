@@ -7,7 +7,7 @@ export type AuthCallback = (err: string | undefined, jwtToken: string, userInfo:
 
 export interface AuthConfig {
     secret: string
-    compare: (userInfo: any) => Promise<jwtPayload>
+    compare: (userInfo: any) => Promise<jwtPayload | null | undefined>
     signOptions?: jwt.SignOptions
     verifyOptions?: jwt.VerifyOptions
     headerKey?: string

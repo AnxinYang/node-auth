@@ -7,9 +7,9 @@
   "scripts": {
     "prepublish": "npm run build",
     "publish": "npm publish",
-    "patch": "npm patch",
-    "minor": "npm minor",
-    "major": "npm major",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
