@@ -11,6 +11,7 @@ export interface AuthConfig {
     verifyOptions?: jwt.VerifyOptions
     headerKey?: string
     callback?: AuthCallback
+    tokenInBody?: boolean
 }
 
 export interface Auth {
@@ -22,17 +23,21 @@ const defaultCallback: AuthCallback = async (err, jwtToken, jwtPayload, res) => 
     if (err) {
         res.status(401).send(err);
     } else {
-        res.status(200).send(jwtPayload)
+        res.status(200).send({
+            data: jwtPayload,
+            jwt: jwtToken
+        })
     }
 }
 
 const defaultConfig = {
     callback: defaultCallback,
-    headerKey: 'x-auth-token'
+    headerKey: 'x-auth-token',
+    tokenInBody: true
 }
 
 export function Auth(config: AuthConfig): Auth {
-    const { compare, secret, callback, signOptions, verifyOptions, headerKey } = { ...defaultConfig, ...config };
+    const { compare, secret, callback, signOptions, verifyOptions, headerKey, tokenInBody } = { ...defaultConfig, ...config };
 
     return {
         sign: async function (req, res, next) {
