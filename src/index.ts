@@ -1,5 +1,4 @@
-import { RequestHandler } from 'express';
-import { Response, Request } from 'express-serve-static-core';
+import { RequestHandler, NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken'
 
 export type jwtPayload = string | object | Buffer
@@ -15,8 +14,8 @@ export interface AuthConfig {
 }
 
 export interface Auth {
-    sign: RequestHandler,
-    verify: RequestHandler
+    sign: (req: Request, res: Response, next: NextFunction) => any,
+    verify: (req: Request, res: Response, next: NextFunction) => any
 }
 
 const defaultCallback: AuthCallback = async (err, jwtToken, jwtPayload, res) => {
