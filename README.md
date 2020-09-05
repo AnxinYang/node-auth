@@ -38,7 +38,9 @@ import {sign, verify} from './your_auth_file';
 import express from 'express';
 
 const router = express.Router();
-router.get('/some_api',verify,()=>{
+router.get('/some_api',verify,(req, res)=>{
+    // Get decoded info from token;
+    const decoded = res.locals.decoded;
     // Some handler
 });
 
@@ -76,4 +78,4 @@ also, it will set cookie with key `jwt`.
 The `request handler` for login request.
 
 ###  verify: (req: Request, res: Response, next: NextFunction) => Promise<any>:
-The `request handler/middleware` for verify incoming requests.
+The `request handler/middleware` for verify incoming requests. If token is verified, the decoded information from token will be set to `res.locals.decoded`. If token is invalid, it will return a response with `401` code.
