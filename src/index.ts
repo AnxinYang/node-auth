@@ -11,7 +11,6 @@ export interface AuthConfig {
     verifyOptions?: jwt.VerifyOptions
     headerKey?: string
     callback?: AuthCallback
-    tokenInBody?: boolean
 }
 
 export interface Auth {
@@ -19,7 +18,7 @@ export interface Auth {
     verify: (req: Request, res: Response, next: NextFunction) => Promise<any>
 }
 
-const defaultCallback: AuthCallback = async (err, jwtToken, jwtPayload, res) => {
+const defaultCallback: AuthCallback = async (err, jwtToken, jwtPayload, res, req) => {
     if (err) {
         res.status(401).send(err);
     } else {
@@ -70,7 +69,7 @@ export function Auth(config: AuthConfig): Auth {
             const token = req.get(headerKey);
 
             if (!token) {
-                res.status(401).send('Invalid Token.');
+                res.status(401).send('No Token.');
                 return;
             };
 
@@ -80,7 +79,7 @@ export function Auth(config: AuthConfig): Auth {
                 next()
             } catch (e) {
                 console.log(e)
-                res.status(500).send();
+                res.status(401).send('Invalid Token.');
                 return;
             }
         }
