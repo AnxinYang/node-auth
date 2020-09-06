@@ -1,5 +1,5 @@
 # AX-Node-Auth
-A `Express` wrapper of `jsonwebtoken` for quick setup a auth handler with `jwt`.
+A `Express` module for handling user authorization and authentication.
 
 ## Install
 ``` 
