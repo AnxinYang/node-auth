@@ -68,8 +68,8 @@ Return a `Auth` object that contains `sign` and `verify` request handler.
 - `callback: async (err, jwtToken, jwtPayload, res,req) =>void; [optional]`: Provide an async function if you want to handle response youseft. By default, it returns `401` if `compare` return `undefined` or `null`. It returns `200` with body: 
 ```json
 {
-    "data": {...}, // The jwtPayload compare function return.
-    "jwt": "..." // jwt token string
+    "data": {}, // The jwtPayload compare function return.
+    "jwt": "some token string" // jwt token string
 }
 ```
 also, it will set cookie with key `jwt`.
