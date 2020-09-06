@@ -66,7 +66,7 @@ Return a `Auth` object that contains `sign` and `verify` request handler.
 - `headerKey[optional]`: Tells `verify` function which field token is locate in `Header`. Default: `x-auth-token`.
 
 - `callback: async (err, jwtToken, jwtPayload, res,req) =>void; [optional]`: Provide an async function if you want to handle response youseft. By default, it returns `401` if `compare` return `undefined` or `null`. It returns `200` with body: 
-```json
+```
 {
     "data": {}, // The jwtPayload compare function return.
     "jwt": "some token string" // jwt token string
